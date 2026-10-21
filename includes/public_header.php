@@ -28,7 +28,7 @@ $menuPublik = [
 
 <nav class="navbar navbar-expand-lg navbar-umkm sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="<?= url('index.php') ?>">Katalog UMKM <span>Nusantara</span></a>
+    <a class="navbar-brand" href="<?= url('index.php') ?>">UMKM <span>Nusantara</span></a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu">
       <span class="navbar-toggler-icon"></span>
     </button>
