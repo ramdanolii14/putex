@@ -10,7 +10,7 @@ $stmt = db()->prepare(
      FROM products p
      JOIN umkm u ON u.id = p.umkm_id
      LEFT JOIN categories c ON c.id = p.category_id
-     WHERE p.id = ? AND p.status = 'disetujui'
+     WHERE p.id = ? AND p.status = 'disetujui' AND u.status = 'disetujui'
      LIMIT 1"
 );
 $stmt->execute([$id]);
@@ -33,7 +33,7 @@ $lain = db()->prepare(
      FROM products p
      JOIN umkm u ON u.id = p.umkm_id
      LEFT JOIN categories c ON c.id = p.category_id
-     WHERE p.umkm_id = ? AND p.status = 'disetujui' AND p.id <> ?
+     WHERE p.umkm_id = ? AND p.status = 'disetujui' AND u.status = 'disetujui' AND p.id <> ?
      ORDER BY p.updated_at DESC LIMIT 4"
 );
 $lain->execute([$produk['id_umkm'], $produk['id']]);
