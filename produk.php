@@ -8,7 +8,7 @@ $urut       = $_GET['urut'] ?? 'terbaru';
 $halamanKe  = max(1, (int) ($_GET['hal'] ?? 1));
 $perHalaman = 12;
 
-$where  = ["p.status = 'disetujui'"];
+$where  = ["p.status = 'disetujui'", "u.status = 'disetujui'"];
 $params = [];
 
 if ($q !== '') {
