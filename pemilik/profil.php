@@ -53,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             notif('sukses', 'Profil usaha berhasil diperbarui.');
         } else {
             db()->prepare(
-                'INSERT INTO umkm (user_id, nama_usaha, nama_pemilik, no_telepon, alamat, deskripsi, foto_umkm)
-                 VALUES (?, ?, ?, ?, ?, ?, ?)'
+                'INSERT INTO umkm (user_id, nama_usaha, nama_pemilik, no_telepon, alamat, deskripsi, foto_umkm, status)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, "menunggu")'
             )->execute([user()['id'], $isi['nama_usaha'], $isi['nama_pemilik'], $isi['no_telepon'], $isi['alamat'], $isi['deskripsi'], $fotoBaru]);
-            notif('sukses', 'Profil usaha tersimpan. Sekarang Anda bisa menambahkan produk.');
+            notif('sukses', 'Profil usaha tersimpan dan menunggu verifikasi admin. Anda bisa menambahkan produk, tetapi usaha belum tampil di katalog publik sampai disetujui.');
         }
         redirect('pemilik/index.php');
     }
