@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 
 $id   = (int) ($_GET['id'] ?? 0);
-$stmt = db()->prepare('SELECT * FROM umkm WHERE id = ? LIMIT 1');
+$stmt = db()->prepare('SELECT * FROM umkm WHERE id = ? AND status = 'disetujui' LIMIT 1');
 $stmt->execute([$id]);
 $umkm = $stmt->fetch();
 
@@ -21,7 +21,7 @@ $sp = db()->prepare(
      FROM products p
      JOIN umkm u ON u.id = p.umkm_id
      LEFT JOIN categories c ON c.id = p.category_id
-     WHERE p.umkm_id = ? AND p.status = 'disetujui'
+     WHERE p.umkm_id = ? AND p.status = 'disetujui' AND u.status = 'disetujui'
      ORDER BY p.updated_at DESC"
 );
 $sp->execute([$umkm['id']]);
