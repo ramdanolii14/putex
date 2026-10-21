@@ -6,7 +6,7 @@ $where  = "WHERE u.status = 'disetujui'";
 $params = [];
 
 if ($q !== '') {
-    $where = 'WHERE u.status = 'disetujui' AND (u.nama_usaha LIKE :q1 OR u.alamat LIKE :q2 OR u.deskripsi LIKE :q3)';
+    $where = "WHERE u.status = 'disetujui' AND (u.nama_usaha LIKE :q1 OR u.alamat LIKE :q2 OR u.deskripsi LIKE :q3)";
     $params[':q1'] = $params[':q2'] = $params[':q3'] = '%' . $q . '%';
 }
 
