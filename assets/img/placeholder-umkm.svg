@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Logo usaha belum tersedia">
+  <rect width="400" height="300" fill="#e7f1ea"/>
+  <g fill="none" stroke="#7fa793" stroke-width="6" stroke-linejoin="round">
+    <path d="M120 150h160v70H120z"/>
+    <path d="M110 150l14-40h152l14 40"/>
+    <path d="M170 220v-40h60v40"/>
+  </g>
+  <text x="200" y="255" font-family="sans-serif" font-size="16" fill="#5b6a61" text-anchor="middle">Logo belum tersedia</text>
+</svg>
