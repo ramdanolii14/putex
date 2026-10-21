@@ -100,7 +100,7 @@ function gambar_menu(array $menu, $menuAktif)
         <span class="fw-bold">Menu <?= e($peran) ?></span>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
       </div>
-      <div class="offcanvas-body sidebar" style="width:100%;height:auto;position:static;padding-top:0">
+      <div class="offcanvas-body sidebar" style="display:block;width:100%;height:auto;position:static;padding-top:0">
         <?php gambar_menu($menu, $menuAktif); ?>
         <hr>
         <a class="menu" href="<?= url('index.php') ?>"><i class="bi bi-globe2"></i><span>Lihat website</span></a>
