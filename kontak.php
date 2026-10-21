@@ -13,9 +13,9 @@ require_once APP_ROOT . '/includes/public_header.php';
 
       <div class="kotak mt-4">
         <div class="kotak-badan">
-          <p class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--hijau)"></i>admin@umkm.test</p>
-          <p class="mb-2"><i class="bi bi-whatsapp me-2" style="color:var(--wa)"></i>0812-3456-7890 (jam kerja 08.00–16.00 WITA)</p>
-          <p class="mb-0"><i class="bi bi-geo-alt me-2" style="color:var(--bata)"></i>Kantor Dinas Koperasi dan UMKM, Jl. Merdeka No. 1</p>
+          <p class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--hijau)"></i>ptrmohamad9@gmail.com</p>
+          <p class="mb-2"><i class="bi bi-whatsapp me-2" style="color:var(--wa)"></i>0838-4700-4309 (jam kerja 08.00–16.00 WITA)</p>
+          <p class="mb-0"><i class="bi bi-geo-alt me-2" style="color:var(--bata)"></i>Jl. Yusuf Dukalang</p>
         </div>
       </div>
 
