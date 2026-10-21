@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 
 // Statistik ringkas
-$totalUmkm   = (int) db()->query('SELECT COUNT(*) FROM umkm WHERE status = 'disetujui'')->fetchColumn();
+$totalUmkm   = (int) db()->query("SELECT COUNT(*) FROM umkm WHERE status = 'disetujui'")->fetchColumn();
 $totalProduk = (int) db()->query("SELECT COUNT(*) FROM products WHERE status = 'disetujui'")->fetchColumn();
 
 $kategori = ambil_kategori();
@@ -22,8 +22,8 @@ $produkTerbaru = db()->query(
 $umkmPilihan = db()->query(
     "SELECT u.*, COUNT(p.id) AS jumlah_produk
      FROM umkm u
-     WHERE u.status = 'disetujui'
      LEFT JOIN products p ON p.umkm_id = u.id AND p.status = 'disetujui'
+     WHERE u.status = 'disetujui'
      GROUP BY u.id
      ORDER BY jumlah_produk DESC, u.created_at DESC
      LIMIT 3"
