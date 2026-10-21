@@ -41,6 +41,7 @@ CREATE TABLE `umkm` (
   `no_telepon`   VARCHAR(20) NOT NULL,
   `deskripsi`    TEXT NULL,
   `foto_umkm`    VARCHAR(255) NULL,
+  `status`       ENUM('menunggu','disetujui','ditolak') NOT NULL DEFAULT 'menunggu',
   `created_at`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY `uk_umkm_user` (`user_id`),
@@ -116,10 +117,10 @@ INSERT INTO `categories` (`id`, `nama_kategori`, `deskripsi`) VALUES
 (5, 'Bumbu & Olahan', 'Sambal, bumbu dapur, ikan dan daging olahan.'),
 (6, 'Kerajinan',      'Anyaman, kain, dan produk kriya lokal.');
 
-INSERT INTO `umkm` (`id`, `user_id`, `nama_usaha`, `nama_pemilik`, `alamat`, `no_telepon`, `deskripsi`) VALUES
-(1, 2, 'Dapur Bu Siti',     'Siti Rahmawati', 'Jl. Merdeka No. 12, Kota Gorontalo', '081234567890', 'Usaha rumahan yang menjual aneka kue basah dan jajanan pasar sejak 2018. Menerima pesanan untuk acara keluarga dan kantor.'),
-(2, 3, 'Kopi Tanjung',      'Bayu Pratama',   'Jl. Pantai Indah No. 5, Kota Gorontalo', '082198765432', 'Roastery kecil yang mengolah biji kopi robusta dari kebun petani sekitar. Tersedia biji utuh maupun bubuk.'),
-(3, 4, 'Sambal Lela Pedas', 'Nurlela Hasan',  'Jl. Anggrek No. 8, Kabupaten Bone Bolango', '085233344455', 'Produsen sambal roa dan bumbu dapur khas Gorontalo dengan bahan segar tanpa pengawet.');
+INSERT INTO `umkm` (`id`, `user_id`, `nama_usaha`, `nama_pemilik`, `alamat`, `no_telepon`, `deskripsi`, `status`) VALUES
+(1, 2, 'Dapur Bu Siti',     'Siti Rahmawati', 'Jl. Merdeka No. 12, Kota Gorontalo', '081234567890', 'Usaha rumahan yang menjual aneka kue basah dan jajanan pasar sejak 2018. Menerima pesanan untuk acara keluarga dan kantor.', 'disetujui'),
+(2, 3, 'Kopi Tanjung',      'Bayu Pratama',   'Jl. Pantai Indah No. 5, Kota Gorontalo', '082198765432', 'Roastery kecil yang mengolah biji kopi robusta dari kebun petani sekitar. Tersedia biji utuh maupun bubuk.', 'disetujui'),
+(3, 4, 'Sambal Lela Pedas', 'Nurlela Hasan',  'Jl. Anggrek No. 8, Kabupaten Bone Bolango', '085233344455', 'Produsen sambal roa dan bumbu dapur khas Gorontalo dengan bahan segar tanpa pengawet.', 'disetujui');
 
 INSERT INTO `products` (`umkm_id`, `category_id`, `nama_produk`, `deskripsi`, `harga`, `stok`, `no_wa`, `status`, `alasan_penolakan`) VALUES
 (1, 4, 'Kue Lapis Pandan',      'Kue lapis dengan aroma pandan asli, dikukus setiap pagi. Isi 10 potong per kotak.', 35000, 20, '081234567890', 'disetujui', NULL),
