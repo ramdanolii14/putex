@@ -5,7 +5,7 @@
  */
 
 // ---------- Pengaturan dasar ----------
-define('APP_NAME', 'Katalog UMKM Nusantara');
+define('APP_NAME', 'UMKM Nusantara');
 define('APP_ROOT', dirname(__DIR__));
 
 // Alamat dasar website dideteksi otomatis (misal: /katalog-umkm).
