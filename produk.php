@@ -12,8 +12,8 @@ $where  = ["p.status = 'disetujui'"];
 $params = [];
 
 if ($q !== '') {
-    $where[] = '(p.nama_produk LIKE :q1 OR p.deskripsi LIKE :q2 OR u.nama_usaha LIKE :q3)';
-    $params[':q1'] = $params[':q2'] = $params[':q3'] = '%' . $q . '%';
+    $where[] = '(p.nama_produk LIKE :q1 OR p.deskripsi LIKE :q2 OR u.nama_usaha LIKE :q3 OR u.nama_pemilik LIKE :q4)';
+    $params[':q1'] = $params[':q2'] = $params[':q3'] = $params[':q4'] = '%' . $q . '%';
 }
 if ($kategoriId > 0) {
     $where[] = 'p.category_id = :kat';
@@ -122,7 +122,7 @@ require_once APP_ROOT . '/includes/public_header.php';
 
   <?php else: ?>
     <div class="kotak"><div class="kotak-badan text-center py-5">
-      <p class="fw-bold mb-2">Produk tidak ditemukan</p>
+      <p class="fw-bold mb-2">Produk atau UMKM tidak ditemukan</p>
       <p class="bantuan mb-3">Coba kata kunci lain atau pilih kategori yang berbeda.</p>
       <a class="btn btn-garis btn-sm px-3" href="<?= url('produk.php') ?>">Hapus filter</a>
     </div></div>
