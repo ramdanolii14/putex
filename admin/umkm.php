@@ -2,6 +2,23 @@
 require_once __DIR__ . '/../config/config.php';
 wajib_admin();
 
+// ---------- Verifikasi UMKM oleh admin ----------
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && in_array($_POST['aksi'] ?? '', ['setujui', 'tolak'], true)) {
+    cek_csrf();
+    $id = (int) ($_POST['id'] ?? 0);
+    $status = $_POST['aksi'] === 'setujui' ? 'disetujui' : 'ditolak';
+    $cekUmkm = db()->prepare('SELECT id, nama_usaha FROM umkm WHERE id = ?');
+    $cekUmkm->execute([$id]);
+    $dataUmkm = $cekUmkm->fetch();
+    if (!$dataUmkm) {
+        notif('gagal', 'Data UMKM tidak ditemukan.');
+    } else {
+        db()->prepare('UPDATE umkm SET status = ? WHERE id = ?')->execute([$status, $id]);
+        notif('sukses', 'UMKM "' . $dataUmkm['nama_usaha'] . '" ' . ($status === 'disetujui' ? 'disetujui.' : 'ditolak.'));
+    }
+    redirect('admin/umkm.php');
+}
+
 // ---------- Hapus UMKM (produk ikut terhapus karena ON DELETE CASCADE) ----------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['aksi'] ?? '') === 'hapus') {
     cek_csrf();
@@ -97,8 +114,27 @@ require_once APP_ROOT . '/includes/panel_header.php';
             <span class="fw-bold"><?= (int) $u['total_produk'] ?></span> produk
             <div class="bantuan"><?= (int) $u['disetujui'] ?> tayang &middot; <?= (int) $u['menunggu'] ?> menunggu</div>
           </td>
+          <td>
+            <span class="badge <?= $u['status'] === 'disetujui' ? 'text-bg-success' : ($u['status'] === 'ditolak' ? 'text-bg-danger' : 'text-bg-warning') ?>"><?= e(ucfirst($u['status'])) ?></span>
+          </td>
           <td class="bantuan"><?= tanggal_id($u['created_at']) ?></td>
           <td class="text-end text-nowrap">
+            <?php if ($u['status'] !== 'disetujui'): ?>
+              <form method="post" class="d-inline">
+                <?php csrf_field(); ?>
+                <input type="hidden" name="id" value="<?= (int) $u['id'] ?>">
+                <input type="hidden" name="aksi" value="setujui">
+                <button class="btn btn-success btn-sm" type="submit">Setujui</button>
+              </form>
+            <?php endif; ?>
+            <?php if ($u['status'] !== 'ditolak'): ?>
+              <form method="post" class="d-inline">
+                <?php csrf_field(); ?>
+                <input type="hidden" name="id" value="<?= (int) $u['id'] ?>">
+                <input type="hidden" name="aksi" value="tolak">
+                <button class="btn btn-outline-danger btn-sm" type="submit">Tolak</button>
+              </form>
+            <?php endif; ?>
             <a class="btn btn-garis btn-sm" href="<?= url('admin/umkm-detail.php?id=' . (int) $u['id']) ?>">Detail</a>
             <a class="btn btn-garis btn-sm" href="<?= url('admin/umkm-edit.php?id=' . (int) $u['id']) ?>"><i class="bi bi-pencil"></i></a>
             <button type="button" class="btn btn-outline-danger btn-sm tombol-hapus"
@@ -109,7 +145,7 @@ require_once APP_ROOT . '/includes/panel_header.php';
         </tr>
       <?php endforeach; ?>
       <?php if (!$daftar): ?>
-        <tr><td colspan="6" class="text-center bantuan py-4">Tidak ada data UMKM.</td></tr>
+        <tr><td colspan="7" class="text-center bantuan py-4">Tidak ada data UMKM.</td></tr>
       <?php endif; ?>
       </tbody>
     </table>
